@@ -1,0 +1,21 @@
+{
+  "metadata": [
+    {
+      "description": 1,
+      "denom_units": [
+        {
+          "denom": "gecko",
+          "exponent": 0
+        },
+        {
+          "denom": "evmos",
+          "exponent": 18
+        }
+      ],
+      "base": "gecko",
+      "display": "gecko",
+      "name": "gecko",
+      "symbol": "EVMOS"
+    }
+  ]
+}
