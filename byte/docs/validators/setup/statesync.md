@@ -197,7 +197,7 @@ PEER="96557e26aabf3b23e8ff5282d03196892a7776fc@bd-evmos-mainnet-state-sync-us-01
 wget -O $HOME/genesis.json https://archive.evmos.org/mainnet/genesis.json 
 ```
 
-### Install geckod
+### Install byted
 
 ```bash
 git clone https://github.com/evmos/evmos.git && \ 
@@ -210,27 +210,27 @@ make install
 Node init
 
 ```bash
-geckod init $moniker --chain-id $CHAIN_ID
+byted init $moniker --chain-id $CHAIN_ID
 ```
 
-Move genesis file to .geckod/config folder
+Move genesis file to .byted/config folder
 
 ```bash
-mv $HOME/genesis.json ~/.geckod/config/
+mv $HOME/genesis.json ~/.byted/config/
 ```
 
 Reset the node
 
 ```bash
-geckod tendermint unsafe-reset-all --home $HOME/.geckod
+byted tendermint unsafe-reset-all --home $HOME/.byted
 ```
 
 Change config files (set the node name, add persistent peers, set indexer = "null")
 
 ```bash
-sed -i -e "s%^moniker *=.*%moniker = \"$moniker\"%; " $HOME/.geckod/config/config.toml
-sed -i -e "s%^indexer *=.*%indexer = \"null\"%; " $HOME/.geckod/config/config.toml
-sed -i -e "s%^persistent_peers *=.*%persistent_peers = \"$PEER\"%; " $HOME/.geckod/config/config.toml
+sed -i -e "s%^moniker *=.*%moniker = \"$moniker\"%; " $HOME/.byted/config/config.toml
+sed -i -e "s%^indexer *=.*%indexer = \"null\"%; " $HOME/.byted/config/config.toml
+sed -i -e "s%^persistent_peers *=.*%persistent_peers = \"$PEER\"%; " $HOME/.byted/config/config.toml
 ```
 
 Set the variables for start from snapshot
@@ -264,41 +264,41 @@ s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
 
 s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"| ; \
 
-s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"\"|" ~/.geckod/config/config.toml
+s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"\"|" ~/.byted/config/config.toml
 ```
 
-### Create geckod service
+### Create byted service
 
 ```bash
 echo "[Unit]
-Description=geckod Node
+Description=byted Node
 After=network.target
 #
 [Service]
 User=$USER
 Type=simple
-ExecStart=$(which geckod) start
+ExecStart=$(which byted) start
 Restart=on-failure
 LimitNOFILE=65535
 #
 [Install]
-WantedBy=multi-user.target" > $HOME/geckod.service; sudo mv $HOME/geckod.service /etc/systemd/system/
+WantedBy=multi-user.target" > $HOME/byted.service; sudo mv $HOME/byted.service /etc/systemd/system/
 ```
 
 ```bash
-sudo systemctl enable geckod.service && sudo systemctl daemon-reload
+sudo systemctl enable byted.service && sudo systemctl daemon-reload
 ```
 
-### Run geckod
+### Run byted
 
 ```bash
-sytemctl start geckod
+sytemctl start byted
 ```
 
 ### Check logs
 
 ```bash
-journalctl -u geckod -f
+journalctl -u byted -f
 ```
 
 When the node is started it will then attempt to find a state sync snapshot in the network, and restore it:
@@ -329,7 +329,7 @@ The node is now state synced, having joined the network in seconds
 ### Use this command to switch off your State Sync mode, after node fully synced to avoid problems in future node restarts!
 
 ```bash
-sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1false|" $HOME/.geckod/config/config.toml
+sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1false|" $HOME/.byted/config/config.toml
 ```
 
 :::tip

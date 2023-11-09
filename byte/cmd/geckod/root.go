@@ -52,7 +52,7 @@ const (
 	EnvPrefix = "EVMOS"
 )
 
-// NewRootCmd creates a new root command for geckod. It is called once in the
+// NewRootCmd creates a new root command for byted. It is called once in the
 // main function.
 func NewRootCmd() (*cobra.Command, params.EncodingConfig) {
 	encodingConfig := encoding.MakeConfig(app.ModuleBasics)

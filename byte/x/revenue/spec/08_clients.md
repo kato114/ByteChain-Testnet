@@ -6,10 +6,10 @@ order: 8
 
 ## CLI
 
-Find below a list of  `geckod` commands added with the  `x/revenue` module. You can obtain the full list by using the `geckod -h` command. A CLI command can look like this:
+Find below a list of  `byted` commands added with the  `x/revenue` module. You can obtain the full list by using the `byted -h` command. A CLI command can look like this:
 
 ```bash
-geckod query revenue params
+byted query revenue params
 ```
 
 ### Queries

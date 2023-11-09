@@ -2316,7 +2316,7 @@ fixed menu hovers in dark mode desktop view
 - [#2718](https://github.com/blockscout/blockscout/pull/2718) - Include all addresses taking part in transactions in wallets' addresses counter
 - [#2709](https://github.com/blockscout/blockscout/pull/2709) - Fix stuck label and value for uncle block height
 - [#2707](https://github.com/blockscout/blockscout/pull/2707) - fix for dashboard banner chart legend items
-- [#2706](https://github.com/blockscout/blockscout/pull/2706) - fix empty total_supply in coin gecko response
+- [#2706](https://github.com/blockscout/blockscout/pull/2706) - fix empty total_supply in coin byte response
 - [#2701](https://github.com/blockscout/blockscout/pull/2701) - Exclude nonconsensus blocks from avg block time calculation by default
 - [#2696](https://github.com/blockscout/blockscout/pull/2696) - do not update fetched_coin_balance with nil
 - [#2693](https://github.com/blockscout/blockscout/pull/2693) - remove non consensus internal transactions
@@ -2383,7 +2383,7 @@ fixed menu hovers in dark mode desktop view
 
 ### Chore
 
-- [#2662](https://github.com/blockscout/blockscout/pull/2662) - fetch coin gecko id based on the coin symbol
+- [#2662](https://github.com/blockscout/blockscout/pull/2662) - fetch coin byte id based on the coin symbol
 - [#2646](https://github.com/blockscout/blockscout/pull/2646) - Added Xerom to list of Additional Chains using BlockScout
 - [#2634](https://github.com/blockscout/blockscout/pull/2634) - add Lukso to networks dropdown
 - [#2617](https://github.com/blockscout/blockscout/pull/2617) - skip cache update if there are no blocks inserted

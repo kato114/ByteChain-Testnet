@@ -13,7 +13,7 @@ import (
 
 func (suite *KeeperTestSuite) TestTotalUnclaimed() {
 	ctx := sdk.WrapSDKContext(suite.ctx)
-	coins := sdk.NewCoins(sdk.NewCoin("gecko", sdk.NewInt(1000)))
+	coins := sdk.NewCoins(sdk.NewCoin("byte", sdk.NewInt(1000)))
 
 	testCases := []struct {
 		name       string

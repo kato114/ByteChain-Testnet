@@ -22,14 +22,14 @@ LOGLEVEL="info"
 
 
 # Allocate genesis accounts (cosmos formatted addresses)
-geckod add-genesis-account $KEY 100000000000000000000000000pose --keyring-backend $KEYRING
+byted add-genesis-account $KEY 100000000000000000000000000pose --keyring-backend $KEYRING
 
 # Sign genesis transaction
-geckod gentx $KEY 1000000000000000000000pose --keyring-backend $KEYRING --chain-id $CHAINID
+byted gentx $KEY 1000000000000000000000pose --keyring-backend $KEYRING --chain-id $CHAINID
 ```
 
 The default configuration will generate a single validator localnet with the chain-id
-`geckod-1` and one predefined account (`dev0`) with some allocated funds at the genesis.
+`byted-1` and one predefined account (`dev0`) with some allocated funds at the genesis.
 
 You can start the local chain using:
 
@@ -39,14 +39,14 @@ You can start the local chain using:
 ```
 
 :::tip
-To avoid overwriting any data for a real node used in production, it was decided to store the automatically generated testing configuration at `~/.tmp-geckod` instead of the default `~/.geckod`.
+To avoid overwriting any data for a real node used in production, it was decided to store the automatically generated testing configuration at `~/.tmp-byted` instead of the default `~/.byted`.
 :::
 
-When working with the `local_node.sh` script, it is necessary to extend all `geckod` commands, that target the local test node, with the `--home ~/.tmp-geckod` flag. This is mandatory, because the `home` directory cannot be stored in the `geckod` configuration, which can be seen in the output below. For ease of use, it might be sensible to export this directory path as an environment variable:
+When working with the `local_node.sh` script, it is necessary to extend all `byted` commands, that target the local test node, with the `--home ~/.tmp-byted` flag. This is mandatory, because the `home` directory cannot be stored in the `byted` configuration, which can be seen in the output below. For ease of use, it might be sensible to export this directory path as an environment variable:
 
 ```
- $ export TMP=$HOME/.tmp-geckod`
- $ geckod config --home $TMP
+ $ export TMP=$HOME/.tmp-byted`
+ $ byted config --home $TMP
 {
 	"chain-id": "compose_1-1",
 	"keyring-backend": "test",
@@ -70,14 +70,14 @@ $KEY=dev0
 $CHAINID="evmos_9000-4"
 
 # The argument $MONIKER is the custom username of your node, it should be human-readable.
-geckod init $MONIKER --chain-id=$CHAINID
+byted init $MONIKER --chain-id=$CHAINID
 ```
 
 ::: tip
 You can [edit](./../../validators/quickstart/binary.md#configuring-the-node) this `moniker` later by updating the `config.toml` file.
 :::
 
-The command above creates all the configuration files needed for your node and validator to run, as well as a default genesis file, which defines the initial state of the network. All these [configuration files](./../../validators/quickstart/binary.md#configuring-the-node) are in `~/.geckod` by default, but you can overwrite the location of this folder by passing the `--home` flag.
+The command above creates all the configuration files needed for your node and validator to run, as well as a default genesis file, which defines the initial state of the network. All these [configuration files](./../../validators/quickstart/binary.md#configuring-the-node) are in `~/.byted` by default, but you can overwrite the location of this folder by passing the `--home` flag.
 
 ### Genesis Procedure
 
@@ -86,13 +86,13 @@ The command above creates all the configuration files needed for your node and v
 Before starting the chain, you need to populate the state with at least one account using the [keyring](./../../users/keys/keyring.md#add-keys):
 
 ```bash
-geckod keys add my_validator
+byted keys add my_validator
 ```
 
-Once you have created a local account, go ahead and grant it some `gecko` tokens in your chain's genesis file. Doing so will also make sure your chain is aware of this account's existence:
+Once you have created a local account, go ahead and grant it some `byte` tokens in your chain's genesis file. Doing so will also make sure your chain is aware of this account's existence:
 
 ```bash
-geckod add-genesis-account my_validator 10000000000pose
+byted add-genesis-account my_validator 10000000000pose
 ```
 
 Now that your account has some tokens, you need to add a validator to your chain.
@@ -103,19 +103,19 @@ Now that your account has some tokens, you need to add a validator to your chain
 # Create a gentx
 # NOTE: this command lets you set the number of coins. 
 # Make sure this account has some coins with the genesis.app_state.staking.params.bond_denom denom
-geckod add-genesis-account my_validator 1000000000stake,10000000000pose
+byted add-genesis-account my_validator 1000000000stake,10000000000pose
 ```
 
 A `gentx` does three things:
 
 1. Registers the `validator` account you created as a validator operator account (i.e. the account that controls the validator).
 2. Self-delegates the provided `amount` of staking tokens.
-3. Link the operator account with a Tendermint node pubkey that will be used for signing blocks. If no `--pubkey` flag is provided, it defaults to the local node pubkey created via the `geckod init` command above.
+3. Link the operator account with a Tendermint node pubkey that will be used for signing blocks. If no `--pubkey` flag is provided, it defaults to the local node pubkey created via the `byted init` command above.
 
 For more information on `gentx`, use the following command:
 
 ```bash
-geckod gentx --help
+byted gentx --help
 ```
 
 ### Collecting `gentx`
@@ -129,23 +129,23 @@ A `gentx` can be added manually to the genesis file, or via the following comman
 
 ```bash
 # Add the gentx to the genesis file
-geckod collect-gentxs
+byted collect-gentxs
 ```
 
-This command will add all the `gentxs` stored in `~/.geckod/config/gentx` to the genesis file.
+This command will add all the `gentxs` stored in `~/.byted/config/gentx` to the genesis file.
 
 ### Run Testnet
 
 Finally, check the correctness of the `genesis.json` file:
 
 ```bash
-geckod validate-genesis
+byted validate-genesis
 ```
 
 Now that everything is set up, you can finally start your node:
 
 ```bash
-geckod start
+byted start
 ```
 
 :::tip

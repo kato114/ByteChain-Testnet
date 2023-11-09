@@ -11,7 +11,7 @@ Learn how to backup your wallet's mnemonic and private key. {synopsis}
 When you create a new key, you'll recieve a mnemonic phrase that can be used to restore that key. Backup the mnemonic phrase:
 
 ```bash
-geckod keys add dev0
+byted keys add dev0
 {
   "name": "dev0",
   "type": "local",
@@ -29,7 +29,7 @@ It is the only way to recover your account if you ever forget your password.
 To restore the key:
 
 ```bash
-$ geckod keys add dev0-restored --recover
+$ byted keys add dev0-restored --recover
 > Enter your bip39 mnemonic
 banner genuine height east ghost oak toward reflect asset marble else explain foster car nest make van divide twice culture announce shuffle net peanut
 {
@@ -47,7 +47,7 @@ banner genuine height east ghost oak toward reflect asset marble else explain fo
 To backup this type of key without the mnemonic phrase, do the following:
 
 ```bash
-geckod keys export dev0
+byted keys export dev0
 Enter passphrase to decrypt your key:
 Enter passphrase to encrypt the exported key:
 -----BEGIN TENDERMINT PRIVATE KEY-----
@@ -77,7 +77,7 @@ type: secp256k1
 To backup this type of key without the mnemonic phrase, do the following:
 
 ```bash
-geckod keys unsafe-export-eth-key dev0 > dev0.export
+byted keys unsafe-export-eth-key dev0 > dev0.export
 **WARNING** this is an unsafe way to export your unencrypted private key, are you sure? [y/N]: y
 Enter keyring passphrase:
 ```
@@ -87,14 +87,14 @@ Enter keyring passphrase:
 ### Tendermint-Formatted Private Keys
 
 ```bash
-$ geckod keys import dev0-imported ./dev0.export
+$ byted keys import dev0-imported ./dev0.export
 Enter passphrase to decrypt your key:
 ```
 
 ### Ethereum-Formatted Private Keys
 
 ```
-$ geckod keys unsafe-import-eth-key dev0-imported ./dev0.export
+$ byted keys unsafe-import-eth-key dev0-imported ./dev0.export
 Enter passphrase to encrypt your key:
 ```
 
@@ -103,7 +103,7 @@ Enter passphrase to encrypt your key:
 Verify that your key has been restored using the following command:
 
 ```bash
-$ geckod keys list
+$ byted keys list
 [
   {
     "name": "dev0-imported",

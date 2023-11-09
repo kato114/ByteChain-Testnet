@@ -31,8 +31,8 @@ services:
     environment:
         ETHEREUM_JSONRPC_VARIANT: 'geth'
         BLOCK_TRANSFORMER: 'clique'
-        ETHEREUM_JSONRPC_HTTP_URL: https://rpc-mainnet.geckochain.com/
-        ETHEREUM_JSONRPC_TRACE_URL: https://rpc-mainnet.geckochain.com/
+        ETHEREUM_JSONRPC_HTTP_URL: https://rpc-mainnet.bytexc.org/
+        ETHEREUM_JSONRPC_TRACE_URL: https://rpc-mainnet.bytexc.org/
         DATABASE_URL: postgresql://postgres:@host.docker.internal:7432/blockscout?ssl=false
         ECTO_USE_SSL: 'false'
         SECRET_KEY_BASE: '56NtB48ear7+wMSf0IQuWDAAazhpb31qyc7GiyspBP2vh7t5zlCsF5QDv76chXeN'

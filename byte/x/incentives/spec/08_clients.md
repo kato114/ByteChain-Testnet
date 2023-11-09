@@ -8,7 +8,7 @@ A user can query the `x/incentives` module using the CLI, JSON-RPC, gRPC or REST
 
 ## CLI
 
-Find below a list of `geckod` commands added with the `x/incentives` module. You can obtain the full list by using the `geckod -h` command.
+Find below a list of `byted` commands added with the `x/incentives` module. You can obtain the full list by using the `byted -h` command.
 
 ### Queries
 
@@ -19,7 +19,7 @@ The `query` commands allow users to query `incentives` state.
 Allows users to query all registered incentives.
 
 ```go
-geckod query incentives incentives [flags]
+byted query incentives incentives [flags]
 ```
 
 **`incentive`**
@@ -27,7 +27,7 @@ geckod query incentives incentives [flags]
 Allows users to query an incentive for a given contract.
 
 ```go
-geckod query incentives incentive CONTRACT_ADDRESS [flags]
+byted query incentives incentive CONTRACT_ADDRESS [flags]
 ```
 
 **`gas-meters`**
@@ -35,7 +35,7 @@ geckod query incentives incentive CONTRACT_ADDRESS [flags]
 Allows users to query all gas meters for a given incentive.
 
 ```bash
-geckod query incentives gas-meters CONTRACT_ADDRESS [flags]
+byted query incentives gas-meters CONTRACT_ADDRESS [flags]
 ```
 
 **`gas-meter`**
@@ -43,7 +43,7 @@ geckod query incentives gas-meters CONTRACT_ADDRESS [flags]
 Allows users to query a gas meter for a given incentive and user.
 
 ```go
-geckod query incentives gas-meter CONTRACT_ADDRESS PARTICIPANT_ADDRESS [flags]
+byted query incentives gas-meter CONTRACT_ADDRESS PARTICIPANT_ADDRESS [flags]
 ```
 
 **`params`**
@@ -51,7 +51,7 @@ geckod query incentives gas-meter CONTRACT_ADDRESS PARTICIPANT_ADDRESS [flags]
 Allows users to query incentives params.
 
 ```bash
-geckod query incentives params [flags]
+byted query incentives params [flags]
 ```
 
 ### Proposals
@@ -63,7 +63,7 @@ The `tx gov submit-proposal` commands allow users to query create a proposal usi
 Allows users to submit a `RegisterIncentiveProposal`.
 
 ```bash
-geckod tx gov submit-proposal register-incentive CONTRACT_ADDRESS ALLOCATION EPOCHS [flags]
+byted tx gov submit-proposal register-incentive CONTRACT_ADDRESS ALLOCATION EPOCHS [flags]
 ```
 
 **`cancel-incentive`**
@@ -71,7 +71,7 @@ geckod tx gov submit-proposal register-incentive CONTRACT_ADDRESS ALLOCATION EPO
 Allows users to submit a `CanelIncentiveProposal`.
 
 ```bash
-geckod tx gov submit-proposal cancel-incentive CONTRACT_ADDRESS [flags]
+byted tx gov submit-proposal cancel-incentive CONTRACT_ADDRESS [flags]
 ```
 
 **`param-change`**
@@ -79,7 +79,7 @@ geckod tx gov submit-proposal cancel-incentive CONTRACT_ADDRESS [flags]
 Allows users to submit a `ParameterChangeProposal``.
 
 ```bash
-geckod tx gov submit-proposal param-change PROPOSAL_FILE [flags]
+byted tx gov submit-proposal param-change PROPOSAL_FILE [flags]
 ```
 
 ## gRPC

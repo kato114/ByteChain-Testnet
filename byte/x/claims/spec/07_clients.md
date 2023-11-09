@@ -8,7 +8,7 @@ A user can query the `x/claims` module using the CLI, gRPC or REST.
 
 ## CLI
 
-Find below a list of `geckod` commands added with the `x/claims` module. You can obtain the full list by using the `geckod -h` command.
+Find below a list of `byted` commands added with the `x/claims` module. You can obtain the full list by using the `byted -h` command.
 
 ### Queries
 
@@ -19,7 +19,7 @@ The `query` commands allow users to query `claims` state.
 Allows users to query total amount of unclaimed tokens from the airdrop.
 
 ```bash
-geckod query claims total-unclaimed [flags]
+byted query claims total-unclaimed [flags]
 ```
 
 **`records`**
@@ -27,7 +27,7 @@ geckod query claims total-unclaimed [flags]
 Allows users to query all the claims records available.
 
 ```bash
-geckod query claims records [flags]
+byted query claims records [flags]
 ```
 
 **`record`**
@@ -35,7 +35,7 @@ geckod query claims records [flags]
 Allows users to query a claims record for a given user.
 
 ```bash
-geckod query claims record ADDRESS [flags]
+byted query claims record ADDRESS [flags]
 ```
 
 **`params`**
@@ -43,7 +43,7 @@ geckod query claims record ADDRESS [flags]
 Allows users to query claims params.
 
 ```bash
-geckod query claims params [flags]
+byted query claims params [flags]
 ```
 
 ## gRPC

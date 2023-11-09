@@ -51,7 +51,7 @@ func (suite *KeeperTestSuite) TestOnRecvPacket() {
 	expAck := ibcmock.MockAcknowledgement
 
 	coins := sdk.NewCoins(
-		sdk.NewCoin("gecko", sdk.NewInt(1000)),
+		sdk.NewCoin("byte", sdk.NewInt(1000)),
 		sdk.NewCoin(ibcAtomDenom, sdk.NewInt(1000)),
 		sdk.NewCoin(ibcOsmoDenom, sdk.NewInt(1000)),
 		sdk.NewCoin(erc20Denom, sdk.NewInt(1000)),
@@ -357,14 +357,14 @@ func (suite *KeeperTestSuite) TestGetIBCDenomDestinationIdentifiers() {
 	}{
 		{
 			"invalid native denom",
-			"gecko",
+			"byte",
 			func() {},
 			true,
 			"", "",
 		},
 		{
 			"invalid IBC denom hash",
-			"ibc/gecko",
+			"ibc/byte",
 			func() {},
 			true,
 			"", "",
@@ -577,7 +577,7 @@ func (suite *KeeperTestSuite) TestOnRecvPacketFailTransfer() {
 
 			// Fund receiver account with EVMOS
 			coins := sdk.NewCoins(
-				sdk.NewCoin("gecko", sdk.NewInt(1000)),
+				sdk.NewCoin("byte", sdk.NewInt(1000)),
 				sdk.NewCoin(ibcAtomDenom, sdk.NewInt(1000)),
 			)
 			err := testutil.FundAccount(suite.ctx, suite.app.BankKeeper, secpAddr, coins)

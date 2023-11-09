@@ -17,7 +17,7 @@ This is similar to the `init` command when initializing a single node, but in th
 In order to initialize the files for a test network, run the following command:
 
 ```bash
-geckod testnet init-files
+byted testnet init-files
 ```
 
 You should see the following output in your terminal:
@@ -43,7 +43,7 @@ The `start` subcommand both initializes and starts an in-process test network. T
 You can start the local test network by running the following command:
 
 ```bash
-geckod testnet start
+byted testnet start
 ```
 
 You should see something similar to the following:
@@ -73,19 +73,19 @@ The first validator node is now running in-process, which means the test network
 Check the status of the first validator node:
 
 ```bash
-geckod status
+byted status
 ```
 
 Import the key from the provided mnemonic:
 
 ```bash
-geckod keys add test --recover
+byted keys add test --recover
 ```
 
 Check the balance of the account address:
 
 ```bash
-geckod q bank balances ADDRESS
+byted q bank balances ADDRESS
 ```
 
 Use this test account to manually test against the test network.

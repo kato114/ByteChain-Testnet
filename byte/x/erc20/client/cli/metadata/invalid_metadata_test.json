@@ -4,7 +4,7 @@
       "description": 1,
       "denom_units": [
         {
-          "denom": "gecko",
+          "denom": "byte",
           "exponent": 0
         },
         {
@@ -12,9 +12,9 @@
           "exponent": 18
         }
       ],
-      "base": "gecko",
-      "display": "gecko",
-      "name": "gecko",
+      "base": "byte",
+      "display": "byte",
+      "name": "byte",
       "symbol": "EVMOS"
     }
   ]

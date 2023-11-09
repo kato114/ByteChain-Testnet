@@ -68,55 +68,55 @@ make localnet-stop
 ### Configuration
 
 The `make localnet-start` creates files for a 4-node testnet in `./build` by
-calling the `geckod testnet` command. This outputs a handful of files in the
+calling the `byted testnet` command. This outputs a handful of files in the
 `./build` directory:
 
 ```bash
 tree -L 3 build/
 
 build/
-├── geckod
-├── geckod
+├── byted
+├── byted
 ├── gentxs
 │   ├── node0.json
 │   ├── node1.json
 │   ├── node2.json
 │   └── node3.json
 ├── node0
-│   ├── geckod
+│   ├── byted
 │   │   ├── key_seed.json
 │   │   └── keyring-test-cosmos
-│   └── geckod
+│   └── byted
 │       ├── config
 │       ├── data
-│       └── geckod.log
+│       └── byted.log
 ├── node1
-│   ├── geckod
+│   ├── byted
 │   │   ├── key_seed.json
 │   │   └── keyring-test-cosmos
-│   └── geckod
+│   └── byted
 │       ├── config
 │       ├── data
-│       └── geckod.log
+│       └── byted.log
 ├── node2
-│   ├── geckod
+│   ├── byted
 │   │   ├── key_seed.json
 │   │   └── keyring-test-cosmos
-│   └── geckod
+│   └── byted
 │       ├── config
 │       ├── data
-│       └── geckod.log
+│       └── byted.log
 └── node3
-    ├── geckod
+    ├── byted
     │   ├── key_seed.json
     │   └── keyring-test-cosmos
-    └── geckod
+    └── byted
         ├── config
         ├── data
-        └── geckod.log
+        └── byted.log
 ```
 
-Each `./build/nodeN` directory is mounted to the `/geckod` directory in each container.
+Each `./build/nodeN` directory is mounted to the `/byted` directory in each container.
 
 ### Logging
 
@@ -124,10 +124,10 @@ In order to see the logs of a particular node you can use the following command:
 
 ```bash
 # node 0: daemon logs
-docker exec composednode0 tail geckod.log
+docker exec composednode0 tail byted.log
 
 # node 0: REST & RPC logs
-docker exec composednode0 tail geckod.log
+docker exec composednode0 tail byted.log
 ```
 
 The logs for the daemon will look like:
@@ -192,18 +192,18 @@ Additional instructions on how to interact with the WebSocket can be found on th
 
 ### Keys & Accounts
 
-To interact with `geckod` and start querying state or creating txs, you use the
-`geckod` directory of any given node as your `home`, for example:
+To interact with `byted` and start querying state or creating txs, you use the
+`byted` directory of any given node as your `home`, for example:
 
 ```bash
-geckod keys list --home ./build/node0/geckod
+byted keys list --home ./build/node0/byted
 ```
 
 Now that accounts exists, you may create new accounts and send those accounts
 funds!
 
 ::: tip
-**Note**: Each node's seed is located at `./build/nodeN/geckod/key_seed.json` and can be restored to the CLI using the `geckod keys add --restore` command
+**Note**: Each node's seed is located at `./build/nodeN/byted/key_seed.json` and can be restored to the CLI using the `byted keys add --restore` command
 :::
 
 ### Special Binaries

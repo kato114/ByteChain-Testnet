@@ -115,7 +115,7 @@ Check any account balance using the `eth.getBalance` method:
 9.9999e+25
 ```
 
-We get a big number because the result is denominated in `gecko`. We can convert to Evmos (10 ^18 `gecko`) using the `web3.fromWei` method:
+We get a big number because the result is denominated in `byte`. We can convert to Evmos (10 ^18 `byte`) using the `web3.fromWei` method:
 
 ```javascript
 > web3.fromWei(eth.getBalance(eth.accounts[0]),"ether")

@@ -26,27 +26,27 @@ Set up the Cosmovisor environment variables. We recommend setting these in your 
 
 ```bash
 echo "# Setup Cosmovisor" >> ~/.profile
-echo "export DAEMON_NAME=geckod" >> ~/.profile
-echo "export DAEMON_HOME=$HOME/.geckod" >> ~/.profile
+echo "export DAEMON_NAME=byted" >> ~/.profile
+echo "export DAEMON_HOME=$HOME/.byted" >> ~/.profile
 source ~/.profile
 ```
 
-After this, you must make the necessary folders for `cosmosvisor` in your `DAEMON_HOME` directory (`~/.geckod`) and copy over the current binary.
+After this, you must make the necessary folders for `cosmosvisor` in your `DAEMON_HOME` directory (`~/.byted`) and copy over the current binary.
 
 ```bash
-mkdir -p ~/.geckod/cosmovisor
-mkdir -p ~/.geckod/cosmovisor/genesis
-mkdir -p ~/.geckod/cosmovisor/genesis/bin
-mkdir -p ~/.geckod/cosmovisor/upgrades
+mkdir -p ~/.byted/cosmovisor
+mkdir -p ~/.byted/cosmovisor/genesis
+mkdir -p ~/.byted/cosmovisor/genesis/bin
+mkdir -p ~/.byted/cosmovisor/upgrades
 
-cp $GOPATH/bin/geckod ~/.geckod/cosmovisor/genesis/bin
+cp $GOPATH/bin/byted ~/.byted/cosmovisor/genesis/bin
 ```
 
-To check that you did this correctly, ensure your versions of `cosmovisor` and `geckod` are the same:
+To check that you did this correctly, ensure your versions of `cosmovisor` and `byted` are the same:
 
 ```bash
 cosmovisor run version
-geckod version
+byted version
 ```
 
 ### 2. Download the Evmos release
@@ -79,11 +79,11 @@ cosmovisor/
 ├── current/   # either genesis or upgrades/<name>
 ├── genesis
 │   └── bin
-│       └── geckod
+│       └── byted
 └── upgrades
     └── v3.0.0
         ├── bin
-        │   └── geckod
+        │   └── byted
         └── upgrade-info.json
 ```
 
@@ -112,7 +112,7 @@ cosmovisor run start
 You will need some way to keep the process always running. If you're on linux, you can do this by creating a service.
 
 ```bash
-sudo tee /etc/systemd/system/geckod.service > /dev/null <<EOF
+sudo tee /etc/systemd/system/byted.service > /dev/null <<EOF
 [Unit]
 Description=Evmos Daemon
 After=network-online.target
@@ -124,8 +124,8 @@ Restart=always
 RestartSec=3
 LimitNOFILE=infinity
 
-Environment="DAEMON_HOME=$HOME/.geckod"
-Environment="DAEMON_NAME=geckod"
+Environment="DAEMON_HOME=$HOME/.byted"
+Environment="DAEMON_NAME=byted"
 Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
 Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
 
@@ -138,12 +138,12 @@ Then update and start the node
 
 ```bash
 sudo -S systemctl daemon-reload
-sudo -S systemctl enable geckod
-sudo -S systemctl start geckod
+sudo -S systemctl enable byted
+sudo -S systemctl start byted
 ```
 
 You can check the status with:
 
 ```bash
-systemctl status geckod
+systemctl status byted
 ```

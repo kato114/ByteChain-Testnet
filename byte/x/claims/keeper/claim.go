@@ -9,9 +9,9 @@ import (
 	"github.com/evmos/evmos/v10/x/claims/types"
 )
 
-// ClaigeckosForAction removes the claimable amount entry from a claims record
+// ClaibytesForAction removes the claimable amount entry from a claims record
 // and transfers it to the user's account
-func (k Keeper) ClaigeckosForAction(
+func (k Keeper) ClaibytesForAction(
 	ctx sdk.Context,
 	addr sdk.AccAddress,
 	claimsRecord types.ClaimsRecord,

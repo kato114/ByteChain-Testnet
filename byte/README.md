@@ -1,4 +1,4 @@
-# gecko-evm Docs
+# byte-evm Docs
 
 
 ### Ports 
@@ -13,13 +13,13 @@
 
 ### Chain details
 
-- Network name: gecko Network
+- Network name: byte Network
 - chainId: 323
-- Symbol: gecko
+- Symbol: byte
 - RPC: rpc1.m20chain.com
 - Explorer: explorer.m20chain.com
 
-# geckochain deployment script
+# bytexchain deployment script
 
 ```
 sudo apt update
@@ -44,7 +44,7 @@ go version
 ## Install the executables
 
 ```
-sudo rm -rf ~/.gecko
+sudo rm -rf ~/.byte
 make install
 
 clear
@@ -52,15 +52,15 @@ clear
 ## Running chain
 ./local.sh
 
-## Create the service file "/etc/systemd/system/geckod.service" with the following content
+## Create the service file "/etc/systemd/system/byted.service" with the following content
 ```
-sudo nano /etc/systemd/system/geckod.service
+sudo nano /etc/systemd/system/byted.service
 ```
 
 ## paste following content
 ```
 [Unit]
-Description=geckod
+Description=byted
 Requires=network-online.target
 After=network-online.target
 
@@ -69,12 +69,12 @@ Restart=on-failure
 RestartSec=3
 User=root
 Group=root
-Environment=DAEMON_NAME=geckod
-Environment=DAEMON_HOME=/root/.gecko
+Environment=DAEMON_NAME=byted
+Environment=DAEMON_HOME=/root/.byte
 Environment=DAEMON_ALLOW_DOWNLOAD_BINARIES=on
 Environment=DAEMON_RESTART_AFTER_UPGRADE=on
 PermissionsStartOnly=true
-ExecStart=/root/go/bin/gecko start --pruning="nothing"
+ExecStart=/root/go/bin/byte start --pruning="nothing"
 ExecReload=/bin/kill -HUP $MAINPID
 KillSignal=SIGTERM
 LimitNOFILE=4096
@@ -83,14 +83,14 @@ LimitNOFILE=4096
 WantedBy=multi-user.target
 ## start chain node ##
 ```
-sudo systemctl enable geckod
-sudo systemctl start geckod
+sudo systemctl enable byted
+sudo systemctl start byted
 ```
 ## stop chain node ##
 ```
-sudo systemctl stop geckod
+sudo systemctl stop byted
 ```
-# Adding gecko chain on Metamask
+# Adding byte chain on Metamask
 ## on metamask
 ![Click Add Network button ](assets/1.png)
 ![Click Add Network button ](assets/2.png)

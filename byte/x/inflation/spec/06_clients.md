@@ -9,8 +9,8 @@ REST.
 
 ## CLI
 
-Find below a list of `geckod` commands added with the `x/inflation` module. You
-can obtain the full list by using the `geckod -h` command.
+Find below a list of `byted` commands added with the `x/inflation` module. You
+can obtain the full list by using the `byted -h` command.
 
 ### Queries
 
@@ -21,7 +21,7 @@ The `query` commands allow users to query `inflation` state.
 Allows users to query the current inflation period.
 
 ```go
-geckod query inflation period [flags]
+byted query inflation period [flags]
 ```
 
 **`epoch-mint-provision`**
@@ -29,7 +29,7 @@ geckod query inflation period [flags]
 Allows users to query the current inflation epoch provisions value.
 
 ```go
-geckod query inflation epoch-mint-provision [flags]
+byted query inflation epoch-mint-provision [flags]
 ```
 
 **`skipped-epochs`**
@@ -37,7 +37,7 @@ geckod query inflation epoch-mint-provision [flags]
 Allows users to query the current number of skipped epochs.
 
 ```go
-geckod query inflation skipped-epochs [flags]
+byted query inflation skipped-epochs [flags]
 ```
 
 **`total-supply`**
@@ -45,7 +45,7 @@ geckod query inflation skipped-epochs [flags]
 Allows users to query the total supply of tokens in circulation.
 
 ```go
-geckod query inflation total-supply [flags]
+byted query inflation total-supply [flags]
 ```
 
 **`inflation-rate`**
@@ -53,7 +53,7 @@ geckod query inflation total-supply [flags]
 Allows users to query the inflation rate of the current period.
 
 ```go
-geckod query inflation inflation-rate [flags]
+byted query inflation inflation-rate [flags]
 ```
 
 **`params`**
@@ -61,7 +61,7 @@ geckod query inflation inflation-rate [flags]
 Allows users to query the current inflation parameters.
 
 ```go
-geckod query inflation params [flags]
+byted query inflation params [flags]
 ```
 
 ### Proposals
@@ -74,7 +74,7 @@ using the governance module CLI:
 Allows users to submit a `ParameterChangeProposal`.
 
 ```bash
-geckod tx gov submit-proposal param-change [proposal-file] [flags]
+byted tx gov submit-proposal param-change [proposal-file] [flags]
 ```
 
 ## gRPC

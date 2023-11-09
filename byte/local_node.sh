@@ -3,16 +3,16 @@
 KEYS[0]="dev0"
 # KEYS[1]="dev1"
 # KEYS[2]="dev2"
-CHAINID="gecko_75555-75555"
-MONIKER="lucas"
+CHAINID="byte_1919-1919"
+MONIKER="ww"
 # Remember to change to other types of keyring like 'file' in-case exposing to outside world,
 # otherwise your balance will be wiped quickly
 # The keyring test does not require private key to steal tokens from you
 KEYRING="test"
 KEYALGO="eth_secp256k1"
 LOGLEVEL="info"
-# Set dedicated home directory for the geckod instance
-HOMEDIR="$HOME/.geckod"
+# Set dedicated home directory for the byted instance
+HOMEDIR="$HOME/.byted"
 # to trace evm
 #TRACE="--trace"
 TRACE=""
@@ -49,24 +49,24 @@ if [[ $overwrite == "y" || $overwrite == "Y" ]]; then
 	rm -rf "$HOMEDIR"
 
 	# Set client config
-	geckod config keyring-backend $KEYRING --home "$HOMEDIR"
-	geckod config chain-id $CHAINID --home "$HOMEDIR"
+	byted config keyring-backend $KEYRING --home "$HOMEDIR"
+	byted config chain-id $CHAINID --home "$HOMEDIR"
 
 	# If keys exist they should be deleted
 	for KEY in "${KEYS[@]}"; do
-		geckod keys add $KEY --keyring-backend $KEYRING --algo $KEYALGO --home "$HOMEDIR" 
+		byted keys add $KEY --keyring-backend $KEYRING --algo $KEYALGO --home "$HOMEDIR" 
 ### You can set your address in this line for validataor. can u see?yes ok
 	done
 
 	# Set moniker and chain-id for Evmos (Moniker can be anything, chain-id must be an integer)
-	geckod init $MONIKER -o --chain-id $CHAINID --home "$HOMEDIR"
+	byted init $MONIKER -o --chain-id $CHAINID --home "$HOMEDIR"
 
-	# Change parameter token denominations to gecko
-	jq '.app_state["staking"]["params"]["bond_denom"]="agecko"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS"
-	jq '.app_state["crisis"]["constant_fee"]["denom"]="agecko"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS"
-	jq '.app_state["gov"]["deposit_params"]["min_deposit"][0]["denom"]="agecko"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS"
-	jq '.app_state["evm"]["params"]["evm_denom"]="agecko"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS"
-	jq '.app_state["inflation"]["params"]["mint_denom"]="agecko"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS"
+	# Change parameter token denominations to byte
+	jq '.app_state["staking"]["params"]["bond_denom"]="abyte"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS"
+	jq '.app_state["crisis"]["constant_fee"]["denom"]="abyte"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS"
+	jq '.app_state["gov"]["deposit_params"]["min_deposit"][0]["denom"]="abyte"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS"
+	jq '.app_state["evm"]["params"]["evm_denom"]="abyte"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS"
+	jq '.app_state["inflation"]["params"]["mint_denom"]="abyte"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS"
 
 	# Set gas limit in genesis
 	jq '.consensus_params["block"]["max_gas"]="10000000"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS"
@@ -78,7 +78,7 @@ if [[ $overwrite == "y" || $overwrite == "Y" ]]; then
 	# Set claims records for validator account
 	amount_to_claim=10000
 	claims_key=${KEYS[0]}
-	node_address=$(geckod keys show $claims_key --keyring-backend $KEYRING --home "$HOMEDIR" | grep "address" | cut -c12-)
+	node_address=$(byted keys show $claims_key --keyring-backend $KEYRING --home "$HOMEDIR" | grep "address" | cut -c12-)
 	jq -r --arg node_address "$node_address" --arg amount_to_claim "$amount_to_claim" '.app_state["claims"]["claims_records"]=[{"initial_claimable_amount":$amount_to_claim, "actions_completed":[false, false, false, false],"address":$node_address}]' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS"
 
 	# Set claims decay
@@ -88,7 +88,7 @@ if [[ $overwrite == "y" || $overwrite == "Y" ]]; then
 	# Claim module account:
 	# 0xA61808Fe40fEb8B3433778BBC2ecECCAA47c8c47 || evmos15cvq3ljql6utxseh0zau9m8ve2j8erz89m5wkz
 	
-	#jq -r --arg amount_to_claim "$amount_to_claim" '.app_state["bank"]["balances"] += [{"address":"pose1zmfvrprhl57jt4h20xdnmempx4d07t5a59rzt5","coins":[{"denom":"agecko", "amount":$amount_to_claim}]}]' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS"
+	#jq -r --arg amount_to_claim "$amount_to_claim" '.app_state["bank"]["balances"] += [{"address":"pose1zmfvrprhl57jt4h20xdnmempx4d07t5a59rzt5","coins":[{"denom":"abyte", "amount":$amount_to_claim}]}]' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS"
 
 	if [[ $1 == "pending" ]]; then
 		if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -114,9 +114,9 @@ if [[ $overwrite == "y" || $overwrite == "Y" ]]; then
 
 	# Allocate genesis accounts (cosmos formatted addresses)
 	for KEY in "${KEYS[@]}"; do
-		geckod add-genesis-account $KEY 10000000000000000000000000000agecko --keyring-backend $KEYRING --home "$HOMEDIR"
+		byted add-genesis-account $KEY 10000000000000000000000000000abyte --keyring-backend $KEYRING --home "$HOMEDIR"
 		#Here you can reset token ampount. can u see?yes ok
-		# geckod add-genesis-account $KEY 10000000000000000000000000000agecko --keyring-backend $KEYRING --home "$HOMEDIR"
+		# byted add-genesis-account $KEY 10000000000000000000000000000abyte --keyring-backend $KEYRING --home "$HOMEDIR"
 	done
 
 	# bc is required to add these big numbers
@@ -124,19 +124,19 @@ if [[ $overwrite == "y" || $overwrite == "Y" ]]; then
 	jq -r --arg total_supply "$total_supply" '.app_state["bank"]["supply"][0]["amount"]=$total_supply' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS"
 
 	# Sign genesis transaction
-	geckod gentx ${KEYS[0]} 200000000000000000000000agecko --keyring-backend $KEYRING --chain-id $CHAINID --home "$HOMEDIR"
+	byted gentx ${KEYS[0]} 200000000000000000000000abyte --keyring-backend $KEYRING --chain-id $CHAINID --home "$HOMEDIR"
 	## In case you want to create multiple validators at genesis
-	## 1. Back to `geckod keys add` step, init more keys
-	## 2. Back to `geckod add-genesis-account` step, add balance for those
-	## 3. Clone this ~/.geckod home directory into some others, let's say `~/.clonedcomposed`
+	## 1. Back to `byted keys add` step, init more keys
+	## 2. Back to `byted add-genesis-account` step, add balance for those
+	## 3. Clone this ~/.byted home directory into some others, let's say `~/.clonedcomposed`
 	## 4. Run `gentx` in each of those folders
-	## 5. Copy the `gentx-*` folders under `~/.clonedcomposed/config/gentx/` folders into the original `~/.geckod/config/gentx`
+	## 5. Copy the `gentx-*` folders under `~/.clonedcomposed/config/gentx/` folders into the original `~/.byted/config/gentx`
 
 	# Collect genesis tx
-	geckod collect-gentxs --home "$HOMEDIR"
+	byted collect-gentxs --home "$HOMEDIR"
 
 	# Run this to ensure everything worked and that the genesis file is setup correctly
-	geckod validate-genesis --home "$HOMEDIR"
+	byted validate-genesis --home "$HOMEDIR"
 
 	if [[ $1 == "pending" ]]; then
 		echo "pending mode is on, please wait for the first block committed."
@@ -144,5 +144,5 @@ if [[ $overwrite == "y" || $overwrite == "Y" ]]; then
 fi
 
 # Start the node (remove the --pruning=nothing flag if historical queries are not needed)
-#geckod start --pruning=nothing "$TRACE" --gas-prices 0.00001agecko --gas-adjustment 1.3 --log_level $LOGLEVEL --json-rpc.api eth,txpool,personal,net,debug,web3 --api.enable --home "$HOMEDIR"
-geckod start --pruning=nothing "$TRACE" --rpc.laddr tcp://0.0.0.0:26657 --gas-prices 0.00001agecko --gas-adjustment 1.3 --log_level $LOGLEVEL --json-rpc.api eth,txpool,personal,net,debug,web3 --api.enable --home "$HOMEDIR"
+#byted start --pruning=nothing "$TRACE" --gas-prices 0.00001abyte --gas-adjustment 1.3 --log_level $LOGLEVEL --json-rpc.api eth,txpool,personal,net,debug,web3 --api.enable --home "$HOMEDIR"
+byted start --pruning=nothing "$TRACE" --rpc.laddr tcp://0.0.0.0:26657 --gas-prices 0.00001abyte --gas-adjustment 1.3 --log_level $LOGLEVEL --json-rpc.api eth,txpool,personal,net,debug,web3 --api.enable --home "$HOMEDIR"
